@@ -1,6 +1,10 @@
 package io.mann.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -14,36 +18,48 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 项目名称
+     */
+    @NotBlank(message = "Project name is required")
     private String projectName;
 
     /**
      * 项目标识符
      */
+    @NotBlank(message = "Project Identifier is required")
+    @Size(min = 4,max = 5,message = "Please use 4 to 5 characters")
+    @Column(updatable = false, unique = true)
     private String projectIdentifier;
 
     /**
      * 描述
      */
+    @NotBlank(message = "Project description is required")
     private String  description;
 
     /**
      * 开始时间
      */
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date start_date;
 
     /**
      * 结束时间
      */
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date end_date;
 
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_At;
 
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_At;
 
     public Project() {
