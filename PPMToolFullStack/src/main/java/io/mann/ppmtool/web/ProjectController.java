@@ -42,6 +42,6 @@ public class ProjectController {
         }
 
         Project p = projectService.saveOrUpdateProject(project);
-        return new ResponseEntity<Project>(project, HttpStatus.CREATED);
+        return new ResponseEntity<Project>(p, HttpStatus.CREATED);
     }
 }
