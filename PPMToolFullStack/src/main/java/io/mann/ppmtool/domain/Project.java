@@ -64,12 +64,12 @@ public class Project {
 
     /**
      * Backlog
-     * OneToOne
+     * One To One
      * 必须立即获取
      * cascade 设置级联操作
      */
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "project")
-    //
+    //Todo
     private Backlog backlog;
 
     public Project() {
