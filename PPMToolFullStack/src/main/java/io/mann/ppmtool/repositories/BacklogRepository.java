@@ -10,4 +10,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface BacklogRepository extends CrudRepository<Backlog, Long> {
+
+    /**
+     * 更具项目编号查询
+     * @param Identifier 项目编号
+     * @return Backlog
+     */
+    Backlog findByProjectIdentifier(String Identifier);
 }

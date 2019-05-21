@@ -1,8 +1,8 @@
 package io.mann.ppmtool.repositories;
 
-        import io.mann.ppmtool.domain.Project;
-        import org.springframework.data.repository.CrudRepository;
-        import org.springframework.stereotype.Repository;
+import io.mann.ppmtool.domain.Project;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Author: mann
@@ -10,9 +10,6 @@ package io.mann.ppmtool.repositories;
  */
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, Long> {
-
-//    @Override
-//    Iterable<Project> findAllById(Iterable<Long> iterable);
 
     Project findByProjectIdentifier(String projectId);
 
