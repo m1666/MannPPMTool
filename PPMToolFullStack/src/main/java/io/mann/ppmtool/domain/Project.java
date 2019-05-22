@@ -1,6 +1,7 @@
 package io.mann.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -28,7 +29,7 @@ public class Project {
      * 项目标识符
      */
     @NotBlank(message = "Project Identifier is required")
-    @Size(min = 4,max = 5,message = "Please use 4 to 5 characters")
+    @Size(min = 4, max = 5, message = "Please use 4 to 5 characters")
     @Column(updatable = false, unique = true)
     private String projectIdentifier;
 
@@ -36,7 +37,7 @@ public class Project {
      * 描述
      */
     @NotBlank(message = "Project description is required")
-    private String  description;
+    private String description;
 
     /**
      * 开始时间
@@ -68,8 +69,8 @@ public class Project {
      * 必须立即获取
      * cascade 设置级联操作
      */
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "project")
-    //Todo
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    @JsonIgnore
     private Backlog backlog;
 
     public Project() {
