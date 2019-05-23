@@ -41,16 +41,16 @@ public class ProjectTaskService {
 
             // set the backlog to projectTask
             projectTask.setBacklog(backlog);
-
-            // we want our project sequence to be like this: IDPRO-1 IDPRO-2 ...100 101...
+            //we want our project sequence to be like this: IDPRO-1  IDPRO-2  ...100 101
             Integer BacklogSequence = backlog.getPTSequence();
-
-            // Update the Backlog Sequence
+            // Update the BL SEQUENCE
             BacklogSequence++;
-            backlog.setPTSequence(BacklogSequence);
 
-            // Add Sequence to Project Task
-            projectTask.setProjectSequence(projectIdentifier + "-" + BacklogSequence);
+            backlog.setPTSequence(BacklogSequence);
+            backlogRepository.save(backlog);
+
+            //Add Sequence to Project Task
+            projectTask.setProjectSequence(backlog.getProjectIdentifier() + "-" + BacklogSequence);
             projectTask.setProjectIdentifier(projectIdentifier);
 
             // INITIAL status when status is null
@@ -78,5 +78,12 @@ public class ProjectTaskService {
             throw new ProjectNotFoundException("Project with ID: '" + id + "' does not exist");
         }
         return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
+    }
+
+    public ProjectTask findPTByProjectSequence(String backlog_id, String pt_id) {
+        // make sure we are searching on the right backlog
+
+
+        return projectTaskRepository.findByProjectSequence(pt_id);
     }
 }
