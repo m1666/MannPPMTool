@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @Author: Mann
@@ -62,5 +61,12 @@ public class BacklogController {
         ProjectTask updateProjectTask = projectTaskService.updateByProjectSequence(projectTask, backlog_id, pt_id);
 
         return new ResponseEntity<ProjectTask>(updateProjectTask, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{backlog_id}/{pt_id}")
+    public ResponseEntity<?> deleteProjectTask(@PathVariable String backlog_id, @PathVariable String pt_id){
+        projectTaskService.deletePTByProjectSequence(backlog_id, pt_id);
+
+        return new ResponseEntity<String>("Project Task '"+pt_id+"' was deleted successfully", HttpStatus.OK);
     }
 }
