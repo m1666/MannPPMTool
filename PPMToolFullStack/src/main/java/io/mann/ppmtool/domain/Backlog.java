@@ -42,8 +42,9 @@ public class Backlog {
     /**
      * project tasks
      * One To Many
+     * orphanRemoval = true 如果删除关系，删除关系上的实体
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "backlog")
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "backlog", orphanRemoval = true)
     private List<ProjectTask> projectTasks = new ArrayList<>();
 
 
