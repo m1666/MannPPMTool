@@ -32,7 +32,7 @@ export const getProject = (id, history) => async dispatch => {
       type: GET_PROJECT,
       payload: res.data
     });
-  } catch (error) {
+  } catch (err) {
     history.push("/dashboard");
   }
 };
