@@ -33,12 +33,11 @@ class AddProjectTask extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
-  // on submit
-
+  //on submit
   onSubmit(e) {
     e.preventDefault();
-    const newtTask = {
+
+    const newTask = {
       summary: this.state.summary,
       acceptanceCriteria: this.state.acceptanceCriteria,
       status: this.state.status,
@@ -47,10 +46,11 @@ class AddProjectTask extends Component {
     };
     this.props.addProjectTask(
       this.state.projectIdentifier,
-      newtTask,
+      newTask,
       this.props.history
     );
   }
+
   render() {
     const { id } = this.props.match.params;
     const { errors } = this.state;
@@ -76,11 +76,9 @@ class AddProjectTask extends Component {
                     value={this.state.summary}
                     onChange={this.onChange}
                   />
-                  {
-                    <errors className="invalid-feedback">
-                      {errors.summary}
-                    </errors>
-                  }
+                  {errors.summary && (
+                    <div className="invalid-feedback">{errors.summary}</div>
+                  )}
                 </div>
                 <div className="form-group">
                   <textarea
