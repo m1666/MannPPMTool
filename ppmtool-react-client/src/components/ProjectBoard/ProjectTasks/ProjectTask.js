@@ -6,7 +6,6 @@ class ProjectTask extends Component {
     const { project_task } = this.props;
     let priorityString;
     let priorityClass;
-    const { id } = this.props;
 
     if (project_task.priority === 1) {
       priorityClass = "bg-danger text-light";
