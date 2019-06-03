@@ -1,7 +1,7 @@
 package io.mann.ppmtool.security;
 
 import com.google.gson.Gson;
-import io.mann.ppmtool.exceptions.InvalidLoginResponse;
+import io.mann.ppmtool.exceptions.response.InvalidLoginResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
