@@ -1,5 +1,6 @@
 package io.mann.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -49,6 +50,7 @@ public class ProjectTask {
     /**
      * 到期时间
      */
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date dueDate;
 
     /**
@@ -71,11 +73,13 @@ public class ProjectTask {
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date create_At;
 
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
     public ProjectTask() {
