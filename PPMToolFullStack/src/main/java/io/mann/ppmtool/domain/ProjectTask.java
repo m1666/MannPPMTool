@@ -173,11 +173,17 @@ public class ProjectTask {
         this.backlog = backlog;
     }
 
+    /**
+     * @PrePersist 记录与业务无关的字段。
+     */
     @PrePersist
     protected void onCreate() {
         this.create_At = new Date();
     }
 
+    /**
+     * @PreUpdate 用于为相应的生命周期事件指定回调方法。
+     */
     @PreUpdate
     protected void onUpdate() {
         this.update_At = new Date();
