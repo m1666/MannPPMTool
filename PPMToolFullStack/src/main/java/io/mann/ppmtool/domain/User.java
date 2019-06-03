@@ -32,6 +32,7 @@ public class User implements UserDetails {
     private String password;
 
     @Transient
+    @JsonIgnore
     private String confirmPassword;
 
     private Date create_At;
@@ -51,6 +52,7 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -67,6 +69,7 @@ public class User implements UserDetails {
         this.fullName = fullName;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
