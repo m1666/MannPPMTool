@@ -6,13 +6,13 @@ package io.mann.ppmtool.security;
  */
 public class SecurityConstants {
 
-    public static final String SIGN_UP_URLS = "/api/uers/**";
+    public static final String SIGN_UP_URLS = "/api/users/**";
 
-    public static final String H2_URS = "h2-console/**";
+    public static final String H2_URL = "h2-console/**";
 
     public static final String SECRET = "SecretKeyToGenJWTs";
 
-    public static final String TOKEN_PREFIX = "Mann";
+    public static final String TOKEN_PREFIX = "Mann ";
 
     public static final String HEADER_STRING = "Authorization";
 

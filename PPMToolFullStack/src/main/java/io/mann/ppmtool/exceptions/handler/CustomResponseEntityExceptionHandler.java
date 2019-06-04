@@ -1,8 +1,6 @@
 package io.mann.ppmtool.exceptions.handler;
 
-import io.mann.ppmtool.exceptions.ProjectIdException;
-import io.mann.ppmtool.exceptions.ProjectNotFoundException;
-import io.mann.ppmtool.exceptions.UsernameAlreadyExistsException;
+import io.mann.ppmtool.exceptions.*;
 import io.mann.ppmtool.exceptions.response.ProjectIdExceptionResponse;
 import io.mann.ppmtool.exceptions.response.ProjectNotFoundExceptionResponse;
 import io.mann.ppmtool.exceptions.response.UsernameAlreadyExistsResponse;
@@ -26,19 +24,20 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
     public final ResponseEntity<Object> handleProjectIdException(ProjectIdException ex, WebRequest request) {
         ProjectIdExceptionResponse exceptionResponse = new ProjectIdExceptionResponse(ex.getMessage());
 
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     public final ResponseEntity<Object> handleProjectNotFoundException(ProjectNotFoundException ex, WebRequest request) {
         ProjectNotFoundExceptionResponse exceptionResponse = new ProjectNotFoundExceptionResponse(ex.getMessage());
 
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
-    public final ResponseEntity<Object> handleUsernameAlreadyExistsException(UsernameAlreadyExistsException ex, WebRequest request) {
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleUsernameAlreadyExists(UsernameAlreadyExistsException ex, WebRequest request) {
         UsernameAlreadyExistsResponse exceptionResponse = new UsernameAlreadyExistsResponse(ex.getMessage());
 
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
