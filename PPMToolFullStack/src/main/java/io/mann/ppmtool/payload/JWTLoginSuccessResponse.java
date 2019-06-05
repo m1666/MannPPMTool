@@ -5,7 +5,6 @@ package io.mann.ppmtool.payload;
  * @Date: 2019-06-03 23:14
  */
 public class JWTLoginSuccessResponse {
-
     private boolean success;
     private String token;
 

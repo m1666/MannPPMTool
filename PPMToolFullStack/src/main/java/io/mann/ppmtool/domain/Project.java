@@ -28,8 +28,8 @@ public class Project {
     /**
      * 项目标识符
      */
-    @NotBlank(message = "Project Identifier is required")
-    @Size(min = 4, max = 5, message = "Please use 4 to 5 characters")
+    @NotBlank(message ="Project Identifier is required")
+    @Size(min=4, max=5, message = "Please use 4 to 5 characters")
     @Column(updatable = false, unique = true)
     private String projectIdentifier;
 
@@ -55,6 +55,7 @@ public class Project {
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-mm-dd")
+    @Column(updatable = false)
     private Date create_At;
 
     /**
@@ -72,6 +73,13 @@ public class Project {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     @JsonIgnore
     private Backlog backlog;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private User user;
+
+    private String projectLeader;
 
     public Project() {
     }
@@ -124,22 +132,21 @@ public class Project {
         this.end_date = end_date;
     }
 
-    public Date getCreated_At() {
+    public Date getCreate_At() {
         return create_At;
     }
 
-    public void setCreated_At(Date created_At) {
-        this.create_At = created_At;
+    public void setCreate_At(Date create_At) {
+        this.create_At = create_At;
     }
 
-    public Date getUpdated_At() {
+    public Date getUpdate_At() {
         return update_At;
     }
 
-    public void setUpdated_At(Date updated_At) {
-        this.update_At = updated_At;
+    public void setUpdate_At(Date update_At) {
+        this.update_At = update_At;
     }
-
 
     public Backlog getBacklog() {
         return backlog;
@@ -148,6 +155,23 @@ public class Project {
     public void setBacklog(Backlog backlog) {
         this.backlog = backlog;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getProjectLeader() {
+        return projectLeader;
+    }
+
+    public void setProjectLeader(String projectLeader) {
+        this.projectLeader = projectLeader;
+    }
+
 
     /**
      * @PrePersist 记录与业务无关的字段。

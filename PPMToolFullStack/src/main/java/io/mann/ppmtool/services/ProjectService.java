@@ -2,9 +2,11 @@ package io.mann.ppmtool.services;
 
 import io.mann.ppmtool.domain.Backlog;
 import io.mann.ppmtool.domain.Project;
+import io.mann.ppmtool.domain.User;
 import io.mann.ppmtool.exceptions.ProjectIdException;
 import io.mann.ppmtool.repositories.BacklogRepository;
 import io.mann.ppmtool.repositories.ProjectRepository;
+import io.mann.ppmtool.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,17 @@ public class ProjectService {
     @Autowired
     private BacklogRepository backlogRepository;
 
-    public Project saveOrUpdateProject(Project project) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public Project saveOrUpdateProject(Project project, String username) {
         try {
+            User user = userRepository.findByUsername(username);
+            project.setUser(user);
+            project.setProjectLeader(user.getUsername());
             project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
 
-            if(project.getId() == null) {
+            if (project.getId() == null) {
                 Backlog backlog = new Backlog();
                 project.setBacklog(backlog);
                 backlog.setProject(project);
@@ -37,9 +45,11 @@ public class ProjectService {
             }
 
             return projectRepository.save(project);
+
         } catch (Exception e) {
             throw new ProjectIdException("Project ID '" + project.getProjectIdentifier().toUpperCase() + "' already exists");
         }
+
     }
 
     public Project findProjectByIdentifier(String projectId) {

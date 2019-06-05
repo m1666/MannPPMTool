@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @Date: 2019-05-23 14:29
  */
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class ProjectNotFoundException extends RuntimeException{
-
+public class ProjectNotFoundException extends RuntimeException {
     public ProjectNotFoundException(String message) {
         super(message);
     }

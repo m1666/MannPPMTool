@@ -32,11 +32,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private CustomUserDetailsService customUserDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-									 FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                                    FilterChain filterChain) throws ServletException, IOException {
+
         try {
 
-            String jwt = getJWTFromRequest(request);
+            String jwt = getJWTFromRequest(httpServletRequest);
 
             if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
@@ -44,22 +45,29 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, Collections.emptyList());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+
             }
 
         } catch (Exception ex) {
             logger.error("Could not set user authentication in security context", ex);
         }
-        filterChain.doFilter(request, response);
+
+
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
+
     }
 
-    private String getJWTFromRequest(HttpServletRequest request) {
-        String mannToken = request.getHeader(HEADER_STRING);
 
-        if (StringUtils.hasText(mannToken) && mannToken.startsWith(TOKEN_PREFIX)) {
-            return mannToken.substring(5, mannToken.length());
+    private String getJWTFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader(HEADER_STRING);
+
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
+            return bearerToken.substring(5, bearerToken.length());
         }
+
         return null;
     }
 }

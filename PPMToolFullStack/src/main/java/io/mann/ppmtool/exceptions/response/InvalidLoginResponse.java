@@ -5,9 +5,7 @@ package io.mann.ppmtool.exceptions.response;
  * @Date: 2019-06-03 21:03
  */
 public class InvalidLoginResponse {
-
     private String username;
-
     private String password;
 
     public InvalidLoginResponse() {

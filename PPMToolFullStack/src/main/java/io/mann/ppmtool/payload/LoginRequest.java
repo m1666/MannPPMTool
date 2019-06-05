@@ -6,14 +6,12 @@ import javax.validation.constraints.NotBlank;
  * @Author: Mann
  * @Date: 2019-06-03 23:12
  */
-
 public class LoginRequest {
 
     @NotBlank(message = "Username cannot be blank")
-    private String username ;
-
+    private String username;
     @NotBlank(message = "Password cannot be blank")
-    private String password ;
+    private String password;
 
     public String getUsername() {
         return username;
@@ -31,3 +29,4 @@ public class LoginRequest {
         this.password = password;
     }
 }
+
