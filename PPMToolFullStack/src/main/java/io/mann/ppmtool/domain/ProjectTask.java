@@ -59,7 +59,7 @@ public class ProjectTask {
      * 级联更新操作
      */
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="backlog_id", updatable = false, nullable = false)
+    @JoinColumn(name = "backlog_id", updatable = false, nullable = false)
     @JsonIgnore
     private Backlog backlog;
 

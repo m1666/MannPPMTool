@@ -31,8 +31,8 @@ public class ProjectService {
 
         // project.getId == null
         // find by db id -> null
-        Project existingProject = projectRepository.findByProjectIdentifier(project.getProjectIdentifier());
         if (project.getId() != null) {
+            Project existingProject = projectRepository.findByProjectIdentifier(project.getProjectIdentifier());
             if (existingProject != null && (!existingProject.getProjectLeader().equals(username))) {
                 throw new ProjectNotFoundException("Project not found in your account");
             } else if (existingProject == null) {

@@ -35,7 +35,7 @@ public class Backlog {
      * One To One
      */
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="project_id",nullable = false)
+    @JoinColumn(name = "project_id", nullable = false)
     @JsonIgnore
     private Project project;
 
