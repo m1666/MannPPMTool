@@ -15,7 +15,11 @@ class ProjectItem extends Component {
         <div className="caNamerd card-body bg-light mb-3">
           <div className="row">
             <div className="col-2">
-              <span className="mx-auto">{project.projectIdentifier}</span>
+              <span className="mx-auto">
+                <Link to={`/projectBoard/${project.projectIdentifier}`}>
+                  {project.projectIdentifier}
+                </Link>
+              </span>
             </div>
             <div className="col-lg-6 col-md-4 col-8">
               <h3>{project.projectName}</h3>
