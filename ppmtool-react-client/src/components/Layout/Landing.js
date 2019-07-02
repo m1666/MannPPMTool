@@ -9,7 +9,6 @@ class Landing extends Component {
       this.props.history.push("/dashboard");
     }
   }
-
   render() {
     return (
       <div className="landing">
@@ -21,13 +20,13 @@ class Landing extends Component {
                   Personal Project Management Tool
                 </h1>
                 <p className="lead">
-                  Create your account to join active projects or start you own
+                  Create your account to join active projects or start your own
                 </p>
                 <hr />
-                <Link className=" btn btn-lg btn-primary mr-2" to="/register">
+                <Link className="btn btn-lg btn-primary mr-2" to="/register">
                   Sign Up
                 </Link>
-                <Link to="/login" className="btn btn-lg btn-secondary mr-2">
+                <Link className="btn btn-lg btn-secondary mr-2" to="/login">
                   Login
                 </Link>
               </div>

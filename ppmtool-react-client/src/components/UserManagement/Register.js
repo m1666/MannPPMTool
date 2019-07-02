@@ -139,7 +139,6 @@ const mapStateToProps = state => ({
   errors: state.errors,
   security: state.security
 });
-
 export default connect(
   mapStateToProps,
   { createNewUser }

@@ -32,17 +32,18 @@ class Login extends Component {
     }
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
   onSubmit(e) {
     e.preventDefault();
     const LoginRequest = {
       username: this.state.username,
       password: this.state.password
     };
+
     this.props.login(LoginRequest);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {

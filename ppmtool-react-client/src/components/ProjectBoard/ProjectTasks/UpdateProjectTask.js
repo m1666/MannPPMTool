@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 import {
   getProjectTask,
   updateProjectTask
 } from "../../../actions/backlogActions";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 
 class UpdateProjectTask extends Component {
   constructor() {
@@ -30,8 +30,6 @@ class UpdateProjectTask extends Component {
 
   componentDidMount() {
     const { backlog_id, pt_id } = this.props.match.params;
-    console.log(backlog_id);
-    console.log(pt_id);
     this.props.getProjectTask(backlog_id, pt_id, this.props.history);
   }
 
@@ -71,6 +69,7 @@ class UpdateProjectTask extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+
     const UpdateProjectTask = {
       id: this.state.id,
       projectSequence: this.state.projectSequence,
@@ -83,6 +82,7 @@ class UpdateProjectTask extends Component {
       create_At: this.state.create_At
     };
 
+    // console.log(UpdateProjectTask);
     this.props.updateProjectTask(
       this.state.projectIdentifier,
       this.state.projectSequence,
@@ -106,8 +106,8 @@ class UpdateProjectTask extends Component {
               </Link>
               <h4 className="display-4 text-center">Update Project Task</h4>
               <p className="lead text-center">
-                Project ID: {this.state.projectIdentifier} | Project Task ID:
-                {this.state.projectSequence}
+                Project Name: {this.state.projectIdentifier} | Project Task ID:{" "}
+                {this.state.projectSequence}{" "}
               </p>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">

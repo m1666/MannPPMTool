@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { getBacklog } from "../../actions/backlogActions";
 
 class ProjectBoard extends Component {
+  //constructor to handle errors
   constructor() {
     super();
     this.state = {
@@ -33,10 +34,17 @@ class ProjectBoard extends Component {
 
     const boardAlgorithm = (errors, project_tasks) => {
       if (project_tasks.length < 1) {
+        //PROJECT IDENTIFIER BUG
         if (errors.projectNotFound) {
           return (
             <div className="alert alert-danger text-center" role="alert">
               {errors.projectNotFound}
+            </div>
+          );
+        } else if (errors.projectIdentifier) {
+          return (
+            <div className="alert alert-danger text-center" role="alert">
+              {errors.projectIdentifier}
             </div>
           );
         } else {

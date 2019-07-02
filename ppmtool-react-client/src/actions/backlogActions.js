@@ -6,6 +6,7 @@ import {
   DELETE_PROJECT_TASK
 } from "./types";
 
+//Fix bug with priority in Spring Boot Server, needs to check null first
 export const addProjectTask = (
   backlog_id,
   project_task,

@@ -32,7 +32,7 @@ export const getProject = (id, history) => async dispatch => {
       type: GET_PROJECT,
       payload: res.data
     });
-  } catch (err) {
+  } catch (error) {
     history.push("/dashboard");
   }
 };
@@ -43,7 +43,7 @@ export const deleteProject = id => async dispatch => {
       "Are you sure? This will delete the project and all the data related to it"
     )
   ) {
-    await axios.delete(`http://localhost:8080/api/project/${id}`);
+    await axios.delete(`/api/project/${id}`);
     dispatch({
       type: DELETE_PROJECT,
       payload: id

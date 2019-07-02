@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import classnames from "classnames";
 
 class UpdateProject extends Component {
-  // set state
+  //set state
   constructor() {
     super();
 
@@ -34,6 +34,7 @@ class UpdateProject extends Component {
       start_date,
       end_date
     } = nextProps.project;
+
     this.setState({
       id,
       projectName,
@@ -55,6 +56,7 @@ class UpdateProject extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+
     const updateProject = {
       id: this.state.id,
       projectName: this.state.projectName,
@@ -74,7 +76,7 @@ class UpdateProject extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h5 className="display-4 text-center">Update Project</h5>
+              <h5 className="display-4 text-center">Update Project form</h5>
               <hr />
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -99,6 +101,7 @@ class UpdateProject extends Component {
                     placeholder="Unique Project ID"
                     name="projectIdentifier"
                     value={this.state.projectIdentifier}
+                    onChange={this.onChange}
                     disabled
                   />
                 </div>
@@ -109,8 +112,8 @@ class UpdateProject extends Component {
                     })}
                     placeholder="Project Description"
                     name="description"
-                    value={this.state.description}
                     onChange={this.onChange}
+                    value={this.state.description}
                   />
                   {errors.description && (
                     <div className="invalid-feedback">{errors.description}</div>

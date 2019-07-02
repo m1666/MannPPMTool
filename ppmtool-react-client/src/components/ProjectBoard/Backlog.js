@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ProjectTask from "./ProjectTasks/ProjectTask";
+
 class Backlog extends Component {
   render() {
     const { project_tasks_prop } = this.props;
@@ -20,6 +21,7 @@ class Backlog extends Component {
       if (tasks[i].props.project_task.status === "IN_PROGRESS") {
         inProgressItems.push(tasks[i]);
       }
+
       if (tasks[i].props.project_task.status === "DONE") {
         doneItems.push(tasks[i]);
       }
