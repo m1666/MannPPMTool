@@ -3,7 +3,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddProject from "./components/Project/AddProject";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -17,6 +17,7 @@ import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
+import SecurityRoute from "./securityUtils/secureRoute";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -53,19 +54,25 @@ class App extends Component {
             {
               // Private Routes
             }
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/addProject" component={AddProject} />
-            <Route exact path="/projectBoard/:id" component={ProjectBoard} />
-            <Route
-              exact
-              path="/addProjectTask/:id"
-              component={AddProjectTask}
-            />
-            <Route
-              exact
-              path="/updateProjectTask/:backlog_id/:pt_id"
-              component={UpdateProjectTask}
-            />
+            <Switch>
+              <SecurityRoute exact path="/dashboard" component={Dashboard} />
+              <SecurityRoute exact path="/addProject" component={AddProject} />
+              <SecurityRoute
+                exact
+                path="/projectBoard/:id"
+                component={ProjectBoard}
+              />
+              <SecurityRoute
+                exact
+                path="/addProjectTask/:id"
+                component={AddProjectTask}
+              />
+              <SecurityRoute
+                exact
+                path="/updateProjectTask/:backlog_id/:pt_id"
+                component={UpdateProjectTask}
+              />
+            </Switch>
           </div>
         </Router>
       </Provider>
