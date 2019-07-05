@@ -3,7 +3,12 @@ import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import AddProject from "./components/Project/AddProject";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -19,6 +24,7 @@ import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
 import SecuredRoute from "./securityUtils/SecureRoute";
+import Footer from "./components/Layout/Footer";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -42,43 +48,53 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
-            <Header />
-            {
-              //Public Routes
-            }
-
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-
-            {
-              //Private Routes
-            }
-            <Switch>
-              <SecuredRoute exact path="/dashboard" component={Dashboard} />
-              <SecuredRoute exact path="/addProject" component={AddProject} />
-              <SecuredRoute
-                exact
-                path="/updateProject/:id"
-                component={UpdateProject}
-              />
-              <SecuredRoute
-                exact
-                path="/projectBoard/:id"
-                component={ProjectBoard}
-              />
-              <SecuredRoute
-                exact
-                path="/addProjectTask/:id"
-                component={AddProjectTask}
-              />
-              <SecuredRoute
-                exact
-                path="/updateProjectTask/:backlog_id/:pt_id"
-                component={UpdateProjectTask}
-              />
-            </Switch>
+          <div className="App my-div">
+            <div className="my-div-height">
+              <Header />
+              <div className="my-div-height">
+                {
+                  //Public Routes
+                }
+                <Switch>
+                  <Route exact path="/" component={Landing} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
+                  <Route
+                    path="/"
+                    render={() => (
+                      <Switch>
+                        <SecuredRoute path="/dashboard" component={Dashboard} />
+                        <SecuredRoute
+                          path="/addProject"
+                          component={AddProject}
+                        />
+                        <SecuredRoute
+                          path="/updateProject/:id"
+                          component={UpdateProject}
+                        />
+                        <SecuredRoute
+                          path="/projectBoard/:id"
+                          component={ProjectBoard}
+                        />
+                        <SecuredRoute
+                          path="/addProjectTask/:id"
+                          component={AddProjectTask}
+                        />
+                        <SecuredRoute
+                          path="/updateProjectTask/:backlog_id/:pt_id"
+                          component={UpdateProjectTask}
+                        />
+                        <Redirect to="/" />
+                      </Switch>
+                    )}
+                  />
+                </Switch>
+                {
+                  //Private Routes
+                }
+              </div>
+            </div>
+            <Footer />
           </div>
         </Router>
       </Provider>
